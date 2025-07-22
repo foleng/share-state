@@ -1,0 +1,20 @@
+{
+  "name": "share-state",
+  "private": true,
+  "packageManager": "pnpm@8.6.5",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "test": "turbo run test"
+  },
+  "devDependencies": {
+    "rimraf": "^6.0.1",
+    "turbo": "latest",
+    "turborepo": "^0.0.1",
+    "typescript": "^5.8.3"
+  }
+}

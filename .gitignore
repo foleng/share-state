@@ -1,0 +1,57 @@
+# 依赖目录
+node_modules
+
+# 构建输出
+/dist
+/build
+
+# 临时文件
+.tmp
+.cache
+
+# 编辑器配置
+.vscode
+.idea
+*.suo
+*.ntvs*.
+*.njsproj
+*.sln
+
+# 操作系统文件
+.DS_Store
+Thumbs.db
+
+# 日志文件
+*.log
+
+# 环境变量文件
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# pnpm 锁文件
+pnpm-lock.yaml
+
+# Turbo 缓存
+.turbo
+
+# 包管理相关
+package-lock.json
+yarn.lock
+
+# 类型脚本生成的文件
+*.js
+*.d.ts
+!*.ts
+!*.tsx
+
+# 其他
+coverage
+
+# 不要忽略 .gitignore 和 README.md 等根目录文件
+!/.gitignore
+!/.gitattributes
+!README.md
+!LICENSE
