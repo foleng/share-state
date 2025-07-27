@@ -1,0 +1,11 @@
+# pnpm configuration
+registry=https://registry.npmjs.org/
+
+# Network settings
+fetch-retries=3
+fetch-retry-mintimeout=10000
+fetch-retry-maxtimeout=60000
+
+# Use the npm registry instead of pnpm's default
+# This might help with connectivity issues
+package-import-method=auto

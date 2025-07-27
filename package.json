@@ -9,7 +9,8 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
-    "test": "turbo run test"
+    "test": "turbo run test",
+    "vercel-build": "npm config set registry https://registry.npmjs.org/ && pnpm install --no-frozen-lockfile --prefer-offline || pnpm install --no-frozen-lockfile || npm install && pnpm build"
   },
   "devDependencies": {
     "rimraf": "^6.0.1",
