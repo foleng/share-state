@@ -1,10 +1,10 @@
-import { ref, watchEffect, type Ref } from 'vue';
+import { ref, watchEffect, reactive, type Ref } from 'vue';
 import { getSharedStore, type StoreConfig, type State } from '@share-state/core';
 
 export function useSharedStore<T extends State>(storeConfig: StoreConfig<T>) {
   const name = storeConfig.name;
   const store = getSharedStore<T>(name);
-  const state: Ref<T | null> = ref(store.getState());
+  const state: Ref<T | null> = ref(null);
 
   const unsubscribe = store.subscribe((newState: T) => {
     state.value = newState;
@@ -12,9 +12,7 @@ export function useSharedStore<T extends State>(storeConfig: StoreConfig<T>) {
 
   // 立即同步一次状态
   const currentState = store.getState();
-  if (state.value !== currentState) {
-    state.value = currentState;
-  }
+  state.value = currentState;
 
   // 在组件卸载时取消订阅
   watchEffect((onInvalidate) => {
@@ -23,19 +21,22 @@ export function useSharedStore<T extends State>(storeConfig: StoreConfig<T>) {
     });
   });
 
-  // Return a reactive object that combines the store actions with the reactive state
-  return new Proxy(store, {
+  // Create a reactive object that combines the state with the store methods
+  const reactiveStore: any = reactive({
+    get count() {
+      return state.value?.count ?? 0;
+    }
+  });
+
+  // Add all store methods by creating a Proxy
+  return new Proxy(reactiveStore, {
     get(target, prop: string) {
-      // First, check if it's a property in the current state
-      if (state.value && prop in state.value) {
-        return state.value[prop as keyof T];
+      // First check if it's a property we've defined
+      if (prop in target) {
+        return target[prop];
       }
-      // For the count property specifically, return 0 if state is null
-      if (prop === 'count' && !state.value) {
-        return 0;
-      }
-      // Otherwise, return store methods
-      return target[prop as keyof typeof target];
+      // Otherwise, forward to the original store (for actions)
+      return store[prop];
     }
   });
 }

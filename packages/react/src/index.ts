@@ -4,17 +4,16 @@ import { getSharedStore, defineSharedStore, type StoreConfig, type State } from 
 export function useSharedStore<T extends State>(storeConfig: StoreConfig<T>) {
   const name = storeConfig.name;
   const store = useMemo(() => getSharedStore<T>(name), [name]);
-  const [state, setState] = useState<T | null>(() => store.getState());
+  const [state, setState] = useState<T | null>(null);
 
   useEffect(() => {
     const unsubscribe = store.subscribe((newState: T) => {
       setState(newState);
     });
 
+    // Immediately sync with current state
     const currentState = store.getState();
-    if (state !== currentState) {
-      setState(currentState);
-    }
+    setState(currentState);
     
     return () => unsubscribe();
   }, [store]);

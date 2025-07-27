@@ -4,7 +4,7 @@ import { getSharedStore, defineSharedStore } from "@share-state/core";
 function useSharedStore(storeConfig) {
   const name = storeConfig.name;
   const store = getSharedStore(name);
-  const { subscribe, set } = writable(store.getState());
+  const { subscribe, set } = writable(null);
   const unsubscribe = store.subscribe((newState) => {
     set(newState);
   });

@@ -4,15 +4,13 @@ import { getSharedStore, defineSharedStore } from "@share-state/core";
 function useSharedStore(storeConfig) {
   const name = storeConfig.name;
   const store = useMemo(() => getSharedStore(name), [name]);
-  const [state, setState] = useState(() => store.getState());
+  const [state, setState] = useState(null);
   useEffect(() => {
     const unsubscribe = store.subscribe((newState) => {
       setState(newState);
     });
     const currentState = store.getState();
-    if (state !== currentState) {
-      setState(currentState);
-    }
+    setState(currentState);
     return () => unsubscribe();
   }, [store]);
   return store;

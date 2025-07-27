@@ -25,7 +25,6 @@ function connect() {
   worker.port.onmessage = (e: MessageEvent) => {
     const { type, name, state } = e.data;
     if (type === 'STATE_UPDATE') {
-      console.log('Received STATE_UPDATE:', { name, state });
       localStateCache.set(name, state);
       if (subscribers.has(name)) {
         subscribers.get(name)!.forEach(listener => listener(state));

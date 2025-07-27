@@ -5,7 +5,7 @@ export function useSharedStore<T extends State>(storeConfig: StoreConfig<T>) {
   const name = storeConfig.name;
   const store = getSharedStore<T>(name);
   
-  const { subscribe, set } = writable<T | null>(store.getState());
+  const { subscribe, set } = writable<T | null>(null);
 
   const unsubscribe = store.subscribe((newState: T) => {
     set(newState);

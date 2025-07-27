@@ -4,7 +4,7 @@
     <div class="buttons">
       <button @click="() => store.increment()">+1</button>
       <button @click="() => store.decrement()">-1</button>
-      <button @click="incrementBy5">+5</button>
+      <button @click="() => store.incrementBy(5)">+5</button>
     </div>
   </div>
 </template>
@@ -29,10 +29,6 @@ const counterStore = defineSharedStore({
 })
 
 const store = useSharedStore(counterStore)
-
-function incrementBy5() {
-  store.incrementBy(5)
-}
 </script>
 
 <style scoped>
