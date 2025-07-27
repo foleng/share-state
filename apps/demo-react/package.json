@@ -4,15 +4,19 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "@share-state/react": "workspace:*",
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "clean": "rimraf dist"
   },
   "devDependencies": {
+    "@share-state/react": "workspace:*",
     "@share-state/worker": "workspace:*",
     "typescript": "~5.8.3",
     "vite": "^7.0.4"
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
   }
 }

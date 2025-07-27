@@ -1,0 +1,13 @@
+{
+  "extends": "../../packages/tsconfig/base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "moduleResolution": "node",
+    "types": ["svelte"],
+    "paths": {
+      "@share-state/core": ["../core/src"]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["dist", "node_modules"]
+}

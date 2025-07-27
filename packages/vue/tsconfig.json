@@ -1,0 +1,10 @@
+{
+  "extends": "../../packages/tsconfig/base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "moduleResolution": "node",
+    "types": ["vue"]
+  },
+  "include": ["src"],
+  "exclude": ["dist", "node_modules"]
+}

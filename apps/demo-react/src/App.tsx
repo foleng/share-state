@@ -1,14 +1,26 @@
 import React from 'react';
-import { useSharedStore } from '@share-state/react';
+import { useSharedStore, defineSharedStore } from '@share-state/react';
 
-interface CounterState {
-  count: number;
-  increment: () => void;
-  decrement: () => void;
-}
+const counterStore = defineSharedStore({
+  name: 'counter' as const,
+  state: {
+    count: 0,
+  },
+  actions: {
+    increment: (state) => {
+      state.count++;
+    },
+    decrement: (state) => {
+      state.count--;
+    },
+    incrementBy: (state, amount: number) => {
+      state.count += amount;
+    },
+  },
+});
 
 function App() {
-  const store = useSharedStore<CounterState>('counter');
+  const store = useSharedStore(counterStore);
 
   if (!store) {
     return <div>Loading store...</div>;
@@ -20,8 +32,9 @@ function App() {
       <p>Count: {store.count}</p>
       <button onClick={() => store.increment()}>Increment</button>
       <button onClick={() => store.decrement()}>Decrement</button>
+      <button onClick={() => store.incrementBy(5)}>Increment by 5</button>
     </div>
   );
 }
 
-export default App; 
+export default App;

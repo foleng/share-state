@@ -1,12 +1,13 @@
 import { useState, useEffect, useMemo } from 'react';
-import { getSharedStore } from '../../core/src';
+import { getSharedStore, defineSharedStore, type StoreConfig, type State } from '@share-state/core';
 
-export function useSharedStore<T extends Record<string, any>>(name: string) {
+export function useSharedStore<T extends State>(storeConfig: StoreConfig<T>) {
+  const name = storeConfig.name;
   const store = useMemo(() => getSharedStore<T>(name), [name]);
   const [state, setState] = useState<T | null>(() => store.getState());
 
   useEffect(() => {
-    const unsubscribe = store.subscribe(newState => {
+    const unsubscribe = store.subscribe((newState: T) => {
       setState(newState);
     });
 
@@ -20,3 +21,6 @@ export function useSharedStore<T extends Record<string, any>>(name: string) {
 
   return store;
 }
+
+export { defineSharedStore };
+export type { StoreConfig, State };
