@@ -1,5 +1,4 @@
 {
-  "buildCommand": "pnpm vercel-build",
-  "installCommand": "echo 'Using custom build script'",
+  "buildCommand": "cd apps/demo-react && npm install && npm run build",
   "outputDirectory": "apps/demo-react/dist"
 }
