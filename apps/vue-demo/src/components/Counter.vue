@@ -30,30 +30,3 @@ const counterStore = defineSharedStore({
 
 const store = useSharedStore(counterStore)
 </script>
-
-<style scoped>
-.counter {
-  text-align: center;
-  padding: 2rem;
-}
-
-.buttons {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  margin-top: 1rem;
-}
-
-button {
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background: white;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #f0f0f0;
-}
-</style>

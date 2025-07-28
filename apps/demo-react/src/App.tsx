@@ -1,8 +1,8 @@
-import React from 'react';
-import { useSharedStore, defineSharedStore } from '@share-state/react';
+import React from "react";
+import { useSharedStore, defineSharedStore } from "@share-state/react";
 
 const counterStore = defineSharedStore({
-  name: 'counter' as const,
+  name: "counter" as const,
   state: {
     count: 0,
   },
@@ -27,7 +27,7 @@ function App() {
   }
 
   return (
-    <div>
+    <div className="flex flex-col items-center justify-center h-screen">
       <h1>Shared Counter</h1>
       <p>Count: {store.count}</p>
       <button onClick={() => store.increment()}>Increment</button>
