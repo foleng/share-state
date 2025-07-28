@@ -1,10 +1,10 @@
 <template>
   <div class="counter">
-    <h2>Counter: {{ store.count }}</h2>
+    <h2>Counter: {{ store?.count ?? 0 }}</h2>
     <div class="buttons">
-      <button @click="() => store.increment()">+1</button>
-      <button @click="() => store.decrement()">-1</button>
-      <button @click="() => store.incrementBy(5)">+5</button>
+      <button @click="() => store?.increment()" :disabled="!store">+1</button>
+      <button @click="() => store?.decrement()" :disabled="!store">-1</button>
+      <button @click="() => store?.incrementBy(5)" :disabled="!store">+5</button>
     </div>
   </div>
 </template>
