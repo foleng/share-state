@@ -4,8 +4,7 @@ var subscribers = /* @__PURE__ */ new Map();
 var localStateCache = /* @__PURE__ */ new Map();
 var storeProxyCache = /* @__PURE__ */ new Map();
 function connect() {
-  if (worker)
-    return;
+  if (worker) return;
   worker = new SharedWorker("/shared-worker.js", { type: "module" });
   worker.port.onmessage = (e) => {
     const { type, name, state } = e.data;
@@ -58,14 +57,10 @@ function getSharedStore(name) {
           return;
         }
         const serializableArgs = args.map((arg) => {
-          if (arg === null || arg === void 0)
-            return arg;
-          if (typeof arg === "string" || typeof arg === "number" || typeof arg === "boolean")
-            return arg;
-          if (Array.isArray(arg))
-            return arg;
-          if (typeof arg === "object" && arg.constructor === Object)
-            return arg;
+          if (arg === null || arg === void 0) return arg;
+          if (typeof arg === "string" || typeof arg === "number" || typeof arg === "boolean") return arg;
+          if (Array.isArray(arg)) return arg;
+          if (typeof arg === "object" && arg.constructor === Object) return arg;
           return void 0;
         }).filter((arg) => arg !== void 0);
         worker.port.postMessage({

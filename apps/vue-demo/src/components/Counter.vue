@@ -1,10 +1,25 @@
 <template>
-  <div class="counter">
-    <h2>Counter: {{ store.count }}</h2>
-    <div class="buttons">
-      <button @click="() => store.increment()">+1</button>
-      <button @click="() => store.decrement()">-1</button>
-      <button @click="() => store.incrementBy(5)">+5</button>
+  <div class="flex flex-col items-center p-8">
+    <h2 class="text-2xl font-bold mb-4">Counter: {{ store.count }}</h2>
+    <div class="flex gap-4 justify-center mt-4">
+      <button 
+        @click="() => store.increment()" 
+        class="px-4 py-2 text-base border border-gray-300 rounded hover:bg-gray-100 cursor-pointer"
+      >
+        +1
+      </button>
+      <button 
+        @click="() => store.decrement()" 
+        class="px-4 py-2 text-base border border-gray-300 rounded hover:bg-gray-100 cursor-pointer"
+      >
+        -1
+      </button>
+      <button 
+        @click="() => store.incrementBy(5)" 
+        class="px-4 py-2 text-base border border-gray-300 rounded hover:bg-gray-100 cursor-pointer"
+      >
+        +5
+      </button>
     </div>
   </div>
 </template>
@@ -30,30 +45,3 @@ const counterStore = defineSharedStore({
 
 const store = useSharedStore(counterStore)
 </script>
-
-<style scoped>
-.counter {
-  text-align: center;
-  padding: 2rem;
-}
-
-.buttons {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  margin-top: 1rem;
-}
-
-button {
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background: white;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #f0f0f0;
-}
-</style>
